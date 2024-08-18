@@ -34,7 +34,7 @@ jobs:
 
 
     - name: Run Playwright tests
-      run: npx playwright test --browser=chromium --headed
+      run: npx playwright test --headed
 
     - name: Upload Playwright reports
       if: always()
