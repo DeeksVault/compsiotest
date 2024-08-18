@@ -4,22 +4,39 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
 
-      - name: Install dependencies
-        run: npm install
+    - name: Install dependencies
+      run: npm install
 
-      - name: Run Playwright tests
-        run: npx playwright test
+    - name: Set up Playwright browsers
+      run: npx playwright install --with-deps
+
+    - name: Set up environment variables
+      run: echo "GITHUB_USERNAME=${{ secrets.GITHUB_USERNAME }}" >> $GITHUB_ENV
+      run: echo "GITHUB_PASSWORD=${{ secrets.GITHUB_PASSWORD }}" >> $GITHUB_ENV
+
+    - name: Run Playwright tests
+      run: npx playwright test --browser=chromium --headed
+
+    - name: Upload Playwright reports
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: playwright-report
+        path: playwright-report/
