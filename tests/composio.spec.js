@@ -6,9 +6,9 @@ dotenv.config();
 test('test', async ({ page }) => {
   await page.goto('https://app.composio.dev/');
   await page.getByRole('button', { name: 'Continue with Github' }).click();
-  await page.getByLabel('Username or email address').fill(process.env.USERNAME);
+  await page.getByLabel('Username or email address').fill(process.env.USERNAME || 'annedeekshith@gmail.com');
   await page.getByLabel('Password').click();
-  await page.getByLabel('Password').fill(process.env.PASSWORD);
+  await page.getByLabel('Password').fill(process.env.PASSWORD || 'Deekshith@2002');
   await page.getByRole('button', { name: 'Sign in', exact: true }).click();
   await page.getByRole('link', { name: 'Github A platform for version' }).click();
   await page.locator('.w-\\[320px\\] > div').first().click();
