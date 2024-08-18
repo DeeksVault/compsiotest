@@ -28,8 +28,10 @@ jobs:
       run: npx playwright install --with-deps
 
     - name: Set up environment variables
-      run: echo "GITHUB_USERNAME=${{ secrets.GITHUB_USERNAME }}" >> $GITHUB_ENV
-      run: echo "GITHUB_PASSWORD=${{ secrets.GITHUB_PASSWORD }}" >> $GITHUB_ENV
+      run: |
+        echo "GITHUB_USERNAME=${{ secrets.GITHUB_USERNAME }}" >> $GITHUB_ENV
+        echo "GITHUB_PASSWORD=${{ secrets.GITHUB_PASSWORD }}" >> $GITHUB_ENV
+
 
     - name: Run Playwright tests
       run: npx playwright test --browser=chromium --headed
