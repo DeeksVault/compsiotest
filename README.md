@@ -23,7 +23,7 @@ Before setting up and running the tests, ensure you have the following installed
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/your-repository.git
+    git clone https://github.com/DeeksVault/composiotest.git
     cd your-repository
     ```
 
@@ -47,6 +47,6 @@ To run the Playwright tests locally:
 npx playwright test --browser=chromium --headed
 
 
-GITHUB_USERNAME=your-github-username
-GITHUB_PASSWORD=your-github-password
+USERNAME=your-github-username
+PASSWORD=your-github-password
 
